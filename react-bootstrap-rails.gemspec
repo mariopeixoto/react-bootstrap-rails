@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'react/boostrap/rails/version'
+require 'react/bootstrap/rails/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "react-boostrap-rails"
-  spec.version       = React::Boostrap::Rails::VERSION
+  spec.name          = "react-bootstrap-rails"
+  spec.version       = React::Bootstrap::Rails::VERSION
   spec.authors       = ["Mario Peixoto"]
   spec.email         = ["mario.peixoto@gmail.com"]
   spec.summary       = %q{A gem for distribution of ReactBootstrap for rails}

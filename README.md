@@ -9,7 +9,7 @@ ReactBootstrap version: [0.13.0](https://github.com/react-bootstrap/react-bootst
 Add this line to your application's Gemfile:
 
   ```ruby
-  gem 'react-boostrap-rails'
+  gem 'react-bootstrap-rails'
   ```
 
 And then execute:
@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install react-boostrap-rails
+    $ gem install react-bootstrap-rails
 
 ## Usage
 
@@ -30,7 +30,7 @@ Require react_bootstrap in your application.js:
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/react-boostrap-rails/fork )
+1. Fork it ( https://github.com/mariopeixoto/react-bootstrap-rails/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

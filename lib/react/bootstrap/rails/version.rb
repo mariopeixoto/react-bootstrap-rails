@@ -1,5 +1,5 @@
 module React
-  module Boostrap
+  module Bootstrap
     module Rails
       VERSION = "0.0.1"
     end
