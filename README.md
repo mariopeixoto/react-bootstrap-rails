@@ -1,5 +1,7 @@
 # react-bootstrap-rails
 
+[![Gem Version](https://badge.fury.io/rb/react-bootstrap-rails.svg)](https://badge.fury.io/rb/react-bootstrap-rails.svg)
+
 [ReactBootstrap](http://react-bootstrap.github.io/) for Rails Asset Pipeline
 
 ReactBootstrap version: [0.13.0](https://github.com/react-bootstrap/react-bootstrap/releases/tag/v0.13.0)
