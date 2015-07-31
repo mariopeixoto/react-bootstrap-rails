@@ -30,6 +30,10 @@ Require react_bootstrap in your application.js:
   //= require react_bootstrap
   ```
 
+In order to use it, access it using the global defined variable ReactBootstrap. For example:
+
+	var ButtonToolbar = ReactBootstrap.ButtonToolbar;
+
 ## Contributing
 
 1. Fork it ( https://github.com/mariopeixoto/react-bootstrap-rails/fork )
