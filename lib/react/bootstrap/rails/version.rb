@@ -1,7 +1,7 @@
 module React
   module Bootstrap
     module Rails
-      VERSION = "0.23.7"
+      VERSION = '0.27.3'
     end
   end
 end
