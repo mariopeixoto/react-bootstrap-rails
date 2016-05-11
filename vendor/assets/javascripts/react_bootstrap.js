@@ -4029,7 +4029,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	  /**
 	   * Only valid if `inline` is not set.
 	   */
-	  validationState: _react2['default'].PropTypes.oneOf(['success', 'warning', 'error'])
+	  validationState: _react2['default'].PropTypes.oneOf(['success', 'warning', 'error']),
+	  /**
+	   * Attaches a ref to the `<input>` element. Only functions can be used here.
+	   *
+	   * ```js
+	   * <Checkbox inputRef={ref => { this.input = ref; }} />
+	   * ```
+	   */
+	  inputRef: _react2['default'].PropTypes.func
 	};
 
 	var defaultProps = {
@@ -4051,13 +4059,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var inline = _props.inline;
 	    var disabled = _props.disabled;
 	    var validationState = _props.validationState;
+	    var inputRef = _props.inputRef;
 	    var className = _props.className;
 	    var style = _props.style;
 	    var children = _props.children;
 
-	    var props = _objectWithoutProperties(_props, ['inline', 'disabled', 'validationState', 'className', 'style', 'children']);
+	    var props = _objectWithoutProperties(_props, ['inline', 'disabled', 'validationState', 'inputRef', 'className', 'style', 'children']);
 
 	    delete props.bsClass;
+
+	    var input = _react2['default'].createElement('input', _extends({}, props, {
+	      ref: inputRef,
+	      type: 'checkbox',
+	      disabled: disabled
+	    }));
 
 	    if (inline) {
 	      var _classes;
@@ -4071,7 +4086,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return _react2['default'].createElement(
 	        'label',
 	        { className: _classnames2['default'](className, _classes2), style: style },
-	        _react2['default'].createElement('input', _extends({}, props, { type: 'checkbox', disabled: disabled })),
+	        input,
 	        children
 	      );
 	    }
@@ -4089,7 +4104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      _react2['default'].createElement(
 	        'label',
 	        null,
-	        _react2['default'].createElement('input', _extends({}, props, { type: 'checkbox', disabled: disabled })),
+	        input,
 	        children
 	      )
 	    );
@@ -5634,7 +5649,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var children = this.extractChildren();
 	    var Component = this.props.componentClass;
 
-	    var props = _lodashCompatObjectOmit2['default'](this.props, ['id', 'bsClass', 'role']);
+	    var props = _lodashCompatObjectOmit2['default'](this.props, ['id', 'bsClass', 'role', 'onSelect']);
 	    var className = _utilsBootstrapUtils.prefix(this.props);
 
 	    var rootClasses = (_rootClasses = {
@@ -8832,11 +8847,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.__esModule = true;
 
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
 	var _createUncontrollable = __webpack_require__(160);
 
 	var _createUncontrollable2 = _interopRequireDefault(_createUncontrollable);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var mixin = {
 	  shouldComponentUpdate: function shouldComponentUpdate() {
@@ -8857,7 +8872,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (component.isMounted()) component.forceUpdate();
 	}
 
-	exports.default = (0, _createUncontrollable2.default)([mixin], set);
+	exports['default'] = _createUncontrollable2['default']([mixin], set);
 	module.exports = exports['default'];
 
 /***/ },
@@ -8870,25 +8885,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	exports.default = createUncontrollable;
+	exports['default'] = createUncontrollable;
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	var _react = __webpack_require__(20);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _invariant = __webpack_require__(32);
-
-	var _invariant2 = _interopRequireDefault(_invariant);
-
 	var _utils = __webpack_require__(161);
 
 	var utils = _interopRequireWildcard(_utils);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	function createUncontrollable(mixins, set) {
 
@@ -8899,12 +8910,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var displayName = Component.displayName || Component.name || 'Component',
 	        basePropTypes = utils.getType(Component).propTypes,
-	        isCompositeComponent = utils.isReactComponent(Component),
 	        propTypes;
 
 	    propTypes = utils.uncontrolledPropTypes(controlledValues, basePropTypes, displayName);
 
-	    (0, _invariant2.default)(isCompositeComponent || !methods.length, '[uncontrollable] stateless function components cannot pass through methods ' + 'becasue they have no associated instances. Check component: ' + displayName + ', ' + 'attempting to pass through methods: ' + methods.join(', '));
 	    methods = utils.transform(methods, function (obj, method) {
 	      obj[method] = function () {
 	        var _refs$inner;
@@ -8913,7 +8922,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      };
 	    }, {});
 
-	    var component = _react2.default.createClass(_extends({
+	    var component = _react2['default'].createClass(_extends({
 
 	      displayName: 'Uncontrolled(' + displayName + ')',
 
@@ -8922,6 +8931,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      propTypes: propTypes
 
 	    }, methods, {
+
 	      componentWillMount: function componentWillMount() {
 	        var props = this.props,
 	            keys = Object.keys(controlledValues);
@@ -8930,7 +8940,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	          values[key] = props[utils.defaultKey(key)];
 	        }, {});
 	      },
-
 
 	      /**
 	       * If a prop switches from controlled to Uncontrolled
@@ -8948,6 +8957,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          }
 	        });
 	      },
+
 	      render: function render() {
 	        var _this2 = this;
 
@@ -8971,12 +8981,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	          newProps[handle] = setAndNotify.bind(_this2, propName);
 	        });
 
-	        newProps = _extends({}, props, newProps, {
-	          ref: isCompositeComponent ? 'inner' : null
-	        });
+	        newProps = _extends({}, props, newProps, { ref: 'inner' });
 
-	        return _react2.default.createElement(Component, newProps);
+	        return _react2['default'].createElement(Component, newProps);
 	      }
+
 	    }));
 
 	    component.ControlledComponent = Component;
@@ -8985,9 +8994,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * useful when wrapping a Component and you want to control
 	     * everything
 	     */
-	    component.deferControlTo = function (newComponent) {
-	      var additions = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-	      var nextMethods = arguments[2];
+	    component.deferControlTo = function (newComponent, additions, nextMethods) {
+	      if (additions === undefined) additions = {};
 
 	      return uncontrollable(newComponent, _extends({}, controlledValues, additions), nextMethods);
 	    };
@@ -9014,6 +9022,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }
 	}
+
 	module.exports = exports['default'];
 
 /***/ },
@@ -9023,7 +9032,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	exports.__esModule = true;
-	exports.version = undefined;
 	exports.customPropType = customPropType;
 	exports.uncontrolledPropTypes = uncontrolledPropTypes;
 	exports.getType = getType;
@@ -9033,8 +9041,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.chain = chain;
 	exports.transform = transform;
 	exports.each = each;
-	exports.isReactComponent = isReactComponent;
 	exports.has = has;
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	var _react = __webpack_require__(20);
 
@@ -9043,8 +9052,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _invariant = __webpack_require__(32);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function customPropType(handler, propType, name) {
 
@@ -9067,7 +9074,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    transform(controlledValues, function (obj, handler, prop) {
 	      var type = basePropTypes[prop];
 
-	      (0, _invariant2.default)(typeof handler === 'string' && handler.trim().length, 'Uncontrollable - [%s]: the prop `%s` needs a valid handler key name in order to make it uncontrollable', displayName, prop);
+	      _invariant2['default'](typeof handler === 'string' && handler.trim().length, 'Uncontrollable - [%s]: the prop `%s` needs a valid handler key name in order to make it uncontrollable', displayName, prop);
 
 	      obj[prop] = customPropType(handler, type, displayName);
 
@@ -9078,7 +9085,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return propTypes;
 	}
 
-	var version = exports.version = _react2.default.version.split('.').map(parseFloat);
+	var version = _react2['default'].version.split('.').map(parseFloat);
+
+	exports.version = version;
 
 	function getType(component) {
 	  if (version[0] >= 15 || version[0] === 0 && version[1] >= 13) return component;
@@ -9125,21 +9134,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function each(obj, cb, thisArg) {
 	  if (Array.isArray(obj)) return obj.forEach(cb, thisArg);
 
-	  for (var key in obj) {
-	    if (has(obj, key)) cb.call(thisArg, obj[key], key, obj);
-	  }
-	}
-
-	/**
-	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 */
-	function isReactComponent(component) {
-	  return !!(component && component.prototype && component.prototype.isReactComponent);
+	  for (var key in obj) if (has(obj, key)) cb.call(thisArg, obj[key], key, obj);
 	}
 
 	function has(o, k) {
@@ -11984,6 +11979,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var props = _objectWithoutProperties(_props, ['className', 'style', 'onClick']);
 
+	    delete props.onSelect;
+
 	    var classes = {
 	      disabled: this.props.disabled,
 	      active: this.props.active
@@ -14164,7 +14161,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    var _child$props = child.props;
-	    var linkId = _child$props.linkId;
+	    var id = _child$props.id;
 	    var controls = _child$props['aria-controls'];
 	    var eventKey = _child$props.eventKey;
 	    var role = _child$props.role;
@@ -14173,9 +14170,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var tabIndex = _child$props$tabIndex === undefined ? 0 : _child$props$tabIndex;
 
 	    if (context && context.getId) {
-	       true ? _warning2['default'](!(linkId || controls), 'In the context of a TabContainer, NavItems are given generated `linkId` and `aria-controls` ' + 'attributes for the sake of proper component accessibility. Any provided ones will be ignored. ' + 'To control these attributes directly provide a `generateChildId` prop to the parent TabContainer.') : undefined;
+	       true ? _warning2['default'](!(id || controls), 'In the context of a TabContainer, NavItems are given generated `id` and `aria-controls` ' + 'attributes for the sake of proper component accessibility. Any provided ones will be ignored. ' + 'To control these attributes directly provide a `generateChildId` prop to the parent TabContainer.') : undefined;
 
-	      linkId = context.getId(eventKey, _utilsTabUtils.TAB) || null;
+	      id = context.getId(eventKey, _utilsTabUtils.TAB) || null;
 	      controls = context.getId(eventKey, _utilsTabUtils.PANE) || null;
 	      onSelect = _utilsCreateChainedFunction2['default'](onSelect, context.onSelect);
 	    }
@@ -14188,7 +14185,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return {
 	      onSelect: onSelect,
-	      linkId: linkId,
+	      id: id,
 	      role: role,
 	      onKeyDown: onKeyDown,
 	      'aria-controls': controls,
@@ -16809,7 +16806,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var props = _objectWithoutProperties(_props, ['active', 'disabled', 'onClick', 'buttonComponentClass', 'className', 'style']);
 
 	    delete props.onSelect;
-	    delete props.eventKey;
 
 	    return _react2['default'].createElement(
 	      'li',
@@ -16894,6 +16890,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  handleSelect: function handleSelect(e) {
+	    e.persist();
 	    e.selected = true;
 
 	    if (this.props.onSelect) {
@@ -17479,7 +17476,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	  /**
 	   * Only valid if `inline` is not set.
 	   */
-	  validationState: _react2['default'].PropTypes.oneOf(['success', 'warning', 'error'])
+	  validationState: _react2['default'].PropTypes.oneOf(['success', 'warning', 'error']),
+	  /**
+	   * Attaches a ref to the `<input>` element. Only functions can be used here.
+	   *
+	   * ```js
+	   * <Radio inputRef={ref => { this.input = ref; }} />
+	   * ```
+	   */
+	  inputRef: _react2['default'].PropTypes.func
 	};
 
 	var defaultProps = {
@@ -17501,13 +17506,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var inline = _props.inline;
 	    var disabled = _props.disabled;
 	    var validationState = _props.validationState;
+	    var inputRef = _props.inputRef;
 	    var className = _props.className;
 	    var style = _props.style;
 	    var children = _props.children;
 
-	    var props = _objectWithoutProperties(_props, ['inline', 'disabled', 'validationState', 'className', 'style', 'children']);
+	    var props = _objectWithoutProperties(_props, ['inline', 'disabled', 'validationState', 'inputRef', 'className', 'style', 'children']);
 
 	    delete props.bsClass;
+
+	    var input = _react2['default'].createElement('input', _extends({}, props, {
+	      ref: inputRef,
+	      type: 'radio',
+	      disabled: disabled
+	    }));
 
 	    if (inline) {
 	      var _classes;
@@ -17521,7 +17533,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return _react2['default'].createElement(
 	        'label',
 	        { className: _classnames2['default'](className, _classes2), style: style },
-	        _react2['default'].createElement('input', _extends({}, props, { type: 'radio', disabled: disabled })),
+	        input,
 	        children
 	      );
 	    }
@@ -17539,7 +17551,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      _react2['default'].createElement(
 	        'label',
 	        null,
-	        _react2['default'].createElement('input', _extends({}, props, { type: 'radio', disabled: disabled })),
+	        input,
 	        children
 	      )
 	    );
@@ -18058,19 +18070,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * Transition onExited callback when animation is not `false`
 	     */
-	    onExited: _react.PropTypes.func
+	    onExited: _react.PropTypes.func,
+
+	    /**
+	     * Unmount the tab (remove it from the DOM) when it is no longer visible
+	     */
+	    unmountOnExit: _react.PropTypes.bool
 	  },
 
 	  contextTypes: {
 	    $bs_tabcontainer: _react.PropTypes.shape({
-	      getId: _react.PropTypes.func
+	      getId: _react.PropTypes.func,
+	      unmountOnExit: _react.PropTypes.bool
 	    }),
 	    $bs_tabcontent: _react.PropTypes.shape({
 	      bsClass: _react.PropTypes.string,
 	      animation: _react.PropTypes.oneOfType([_react.PropTypes.bool, _reactPropTypesLibElementType2['default']]),
 	      activeKey: _react.PropTypes.any,
 	      onExited: _react.PropTypes.func,
-	      register: _react.PropTypes.func
+	      register: _react.PropTypes.func,
+	      unmountOnExit: _react.PropTypes.bool
 	    })
 	  },
 
@@ -18127,6 +18146,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return props.animation != null ? props.animation : context.animation;
 	  },
 
+	  getUnmountOnExit: function getUnmountOnExit() {
+	    var context = this.getContext('$bs_tabcontent', this.context);
+	    return this.props.unmountOnExit != null ? this.props.unmountOnExit : context.unmountOnExit;
+	  },
+
 	  isActive: function isActive() {
 	    var props = arguments.length <= 0 || arguments[0] === undefined ? this.props : arguments[0];
 	    var context = arguments.length <= 1 || arguments[1] === undefined ? this.context : arguments[1];
@@ -18143,6 +18167,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var bsClass = this.props.bsClass || this.getContext('$bs_tabcontent').bsClass;
 
 	    var Transition = this.getTransition();
+
+	    if (!visible && !Transition && this.getUnmountOnExit()) {
+	      return null;
+	    }
 
 	    var classes = (_classes = {
 	      active: visible
@@ -18191,7 +18219,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	          onExited: _utilsCreateChainedFunction2['default'](this.handleExited, onExited),
 	          onEnter: _utilsCreateChainedFunction2['default'](this.handleEnter, onEnter),
 	          onEntering: onEntering,
-	          onEntered: onEntered
+	          onEntered: onEntered,
+	          unmountOnExit: this.getUnmountOnExit()
 	        },
 	        tabPane
 	      );
@@ -18410,7 +18439,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Use `false` to disable, `true` to enable the default "Fade"
 	     * animation or any `<Transition>` component.
 	     */
-	    animation: _react.PropTypes.oneOfType([_react.PropTypes.bool, _reactPropTypesLibElementType2['default']])
+	    animation: _react.PropTypes.oneOfType([_react.PropTypes.bool, _reactPropTypesLibElementType2['default']]),
+
+	    /**
+	     * Unmount the tab (remove it from the DOM) when it is no longer visible
+	     */
+	    unmountOnExit: _react.PropTypes.bool
 	  },
 
 	  contextTypes: {
@@ -18426,14 +18460,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	      animation: animationPropType,
 	      activeKey: _react.PropTypes.any,
 	      onExited: _react.PropTypes.func,
-	      register: _react.PropTypes.func
+	      register: _react.PropTypes.func,
+	      unmountOnExit: _react.PropTypes.bool
 	    })
 	  },
 
 	  getDefaultProps: function getDefaultProps() {
 	    return {
 	      componentClass: 'div',
-	      animation: true
+	      animation: true,
+	      unmountOnExit: false
 	    };
 	  },
 
@@ -18452,9 +18488,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        animation: this.props.animation,
 	        activeKey: exitingPane ? undefined : this.getActiveKey(),
 	        onExited: this.handlePaneExited,
-	        register: this.registerPane
+	        register: this.registerPane,
+	        unmountOnExit: this.props.unmountOnExit
 	      }
 	    };
+	  },
+
+	  componentWillMount: function componentWillMount() {
+	    this.panes = [];
 	  },
 
 	  /**
@@ -18505,7 +18546,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  registerPane: function registerPane(eventKey) {
 	    var _this = this;
 
-	    var panes = this.panes || (this.panes = []);
+	    var panes = this.panes;
 
 	    !(panes.indexOf(eventKey) === -1) ?  true ? _invariant2['default'](false, 'You cannot have multiple TabPanes of with the same `eventKey` in the same ' + 'TabContent component. Duplicate eventKey: ' + eventKey) : _invariant2['default'](false) : undefined;
 
@@ -18716,6 +18757,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    onSelect: _react2['default'].PropTypes.func,
 
 	    /**
+	     * Unmount tabs (remove it from the DOM) when it is no longer visible
+	     */
+	    unmountOnExit: _react2['default'].PropTypes.bool,
+
+	    /**
 	     * @deprecated Use TabContainer to create differently shaped tab layouts.
 	     */
 	    position: _react2['default'].PropTypes.oneOf(['top', 'left', 'right']),
@@ -18752,7 +18798,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      animation: true,
 	      tabWidth: 2,
 	      position: 'top',
-	      standalone: false
+	      standalone: false,
+	      unmountOnExit: false
 	    };
 	  },
 
@@ -18789,11 +18836,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      ref: 'tabs',
 	      role: 'tablist'
 	    });
+
 	    var childTabs = _utilsValidComponentChildren2['default'].map(children, this.renderTab);
 
 	    var panesProps = {
 	      ref: 'panes',
-	      animation: props.animation
+	      animation: props.animation,
+	      unmountOnExit: props.unmountOnExit
 	    };
 
 	    var childPanes = children;
