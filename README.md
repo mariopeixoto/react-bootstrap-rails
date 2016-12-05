@@ -4,7 +4,7 @@
 
 [ReactBootstrap](http://react-bootstrap.github.io/) for Rails Asset Pipeline
 
-ReactBootstrap version: [0.30.2](https://github.com/react-bootstrap/react-bootstrap/releases/tag/v0.30.2)
+ReactBootstrap version: [0.30.7](https://github.com/react-bootstrap/react-bootstrap/releases/tag/v0.30.7)
 
 ## Installation
 
