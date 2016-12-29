@@ -1,3 +1,5 @@
+Important: This gem is not maintained anymore.
+
 # react-bootstrap-rails
 
 [![Gem Version](https://badge.fury.io/rb/react-bootstrap-rails.svg)](https://badge.fury.io/rb/react-bootstrap-rails.svg)
