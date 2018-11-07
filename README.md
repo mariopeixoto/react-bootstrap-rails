@@ -6,7 +6,7 @@ Important: This gem is not maintained anymore.
 
 [ReactBootstrap](http://react-bootstrap.github.io/) for Rails Asset Pipeline
 
-ReactBootstrap version: [0.30.2](https://github.com/react-bootstrap/react-bootstrap/releases/tag/v0.30.2)
+ReactBootstrap version: [1.0.0-beta.1](https://github.com/react-bootstrap/react-bootstrap/releases/tag/v1.0.0-beta.1)
 
 ## Installation
 
